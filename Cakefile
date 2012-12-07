@@ -1,4 +1,3 @@
-querystring = require('querystring');
 http = require('http');
 fs = require 'fs'
 {exec} = require 'child_process'
@@ -54,22 +53,36 @@ PostCode = (filename,codestring) ->
   ------WebKitFormBoundaryg5KeYDupWKAqnxs4--
   """
 
-  post_options =
+  head_options =
     host: url
-    port: "80"
-    path: "/"
-    method: "POST"
-    headers:
-      "Content-Type": "multipart/form-data; boundary=----WebKitFormBoundaryg5KeYDupWKAqnxs4"
-      "Content-Length": post_data.length
+    port: 80
+    path: "/"+key
+    method: "HEAD"
 
-  post_req = http.request post_options, (res) ->
+  head_req = http.request head_options, (res) ->
     res.setEncoding 'utf8'
-    res.on 'data', (chunk) ->
-      console.log 'Response: ' + chunk
 
-  post_req.write(post_data)
-  post_req.end()
+    if res.statusCode == 404
+      console.log "No collision, uploading..."
+      post_options =
+        host: url
+        port: "80"
+        path: "/"
+        method: "POST"
+        headers:
+          "Content-Type": "multipart/form-data; boundary=----WebKitFormBoundaryg5KeYDupWKAqnxs4"
+          "Content-Length": post_data.length
+
+      post_req = http.request post_options, (res) ->
+        res.setEncoding 'utf8'
+        res.on 'data', (chunk) ->
+          console.log 'Response: ' + chunk
+
+      post_req.write(post_data)
+      post_req.end()
+
+  head_req.write("")
+  head_req.end()
 
 #traslated from codeskulptor.js
 createHash = (a) ->
@@ -98,7 +111,7 @@ task 'concatupload', "concat files and upload them to codeskulptor, then opens c
 
       #if file name isn't __init__.py remove all import lines
       console.log file
-      if file.indexOf("__init__") == -1
+      if file.indexOf("__imports") == -1
         filteredContents = fileContents.replace(/import (.*)/g,"")
         filteredContents = filteredContents.replace(/from (.*)/g, "")
       else
