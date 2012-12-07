@@ -1,5 +1,5 @@
 class ImageInfo:
-    def __init__(self, center, size, radius = 0, lifespan = None, animated = False):
+    def __init__(self, center, size, radius=0, lifespan=None, animated=False):
         self.center = center
         self.size = size
         self.radius = radius

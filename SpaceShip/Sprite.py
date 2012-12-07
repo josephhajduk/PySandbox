@@ -1,8 +1,8 @@
 # Sprite class
 class Sprite:
-    def __init__(self, pos, vel, ang, ang_vel, image, info, sound = None):
-        self.pos = [pos[0],pos[1]]
-        self.vel = [vel[0],vel[1]]
+    def __init__(self, pos, vel, ang, ang_vel, image, info, sound=None):
+        self.pos = [pos[0], pos[1]]
+        self.vel = [vel[0], vel[1]]
         self.angle = ang
         self.angle_vel = ang_vel
         self.image = image
