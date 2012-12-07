@@ -1,3 +1,6 @@
+from y_Assets import *
+from b_Globals import *
+
 def draw(canvas):
     global time
 

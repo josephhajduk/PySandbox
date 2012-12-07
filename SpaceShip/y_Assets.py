@@ -1,5 +1,5 @@
 import simplegui
-import ImageInfo
+from ImageInfo import *
 
 # art assets created by Kim Lathrop, may be freely re-used in non-commercial projects, please credit Kim
 

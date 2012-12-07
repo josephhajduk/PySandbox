@@ -100,6 +100,7 @@ task 'concatupload', "concat files and upload them to codeskulptor, then opens c
       console.log file
       if file.indexOf("__init__") == -1
         filteredContents = fileContents.replace(/import (.*)/g,"")
+        filteredContents = filteredContents.replace(/from (.*)/g, "")
       else
         filteredContents = fileContents
 
