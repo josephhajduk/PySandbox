@@ -95,7 +95,15 @@ task 'concatupload', "concat files and upload them to codeskulptor, then opens c
   for file, index in appFiles then do (file, index) ->
     fs.readFile "#{file}", 'utf8', (err, fileContents) ->
       throw err if err
-      appContents[index] = fileContents
+
+      #if file name isn't __init__.py remove all import lines
+      console.log file
+      if file.indexOf("__init__") == -1
+        filteredContents = fileContents.replace(/import (.*)/g,"")
+      else
+        filteredContents = fileContents
+
+      appContents[index] = filteredContents
       process() if --remaining is 0
 
   process = ->

@@ -1,7 +1,7 @@
 def draw(canvas):
     global time
 
-    # animiate background
+    # animate background
     time += 1
     center = debris_info.get_center()
     size = debris_info.get_size()

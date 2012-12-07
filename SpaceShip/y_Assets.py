@@ -1,3 +1,6 @@
+import simplegui
+import ImageInfo
+
 # art assets created by Kim Lathrop, may be freely re-used in non-commercial projects, please credit Kim
 
 # debris images - debris1_brown.png, debris2_brown.png, debris3_brown.png, debris4_brown.png

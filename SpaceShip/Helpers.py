@@ -1,4 +1,7 @@
+import math
+
 # helper functions to handle transformations
+
 def angle_to_vector(ang):
     return [math.cos(ang), math.sin(ang)]
 
