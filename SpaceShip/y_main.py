@@ -24,6 +24,9 @@ def draw(canvas):
     #draw score
     canvas.draw_text("Score: 9000", [width - 85, 20], 12, "Red")
 
+    if time < 5 and my_ship.thrust != 1:
+        ship_thrust_sound.pause()
+
     # draw ship and sprites
     my_ship.draw(canvas)
     a_rock.draw(canvas)

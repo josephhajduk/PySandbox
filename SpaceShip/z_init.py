@@ -19,6 +19,8 @@ frame.set_keyup_handler(key_up_handler)
 
 timer = simplegui.create_timer(1000.0, rock_spawner)
 
+ship_thrust_sound.play()
+
 # get things rolling
 timer.start()
 frame.start()
