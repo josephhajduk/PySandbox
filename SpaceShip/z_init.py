@@ -2,6 +2,7 @@ import simplegui
 from y_main import *
 from Sprite import *
 from Ship import *
+from Control import *
 
 # initialize frame
 frame = simplegui.create_frame("Asteroids", width, height)
@@ -13,6 +14,8 @@ a_missile = Sprite([2 * width / 3, 2 * height / 3], [-1,1], 0, 0, missile_image,
 
 # register handlers
 frame.set_draw_handler(draw)
+frame.set_keydown_handler(key_down_handler)
+frame.set_keyup_handler(key_up_handler)
 
 timer = simplegui.create_timer(1000.0, rock_spawner)
 
