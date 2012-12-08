@@ -3,6 +3,7 @@ fs = require 'fs'
 {exec} = require 'child_process'
 filewalk = require 'file'
 connect = require 'connect'
+open = require('open');
 
 writeBucket = "user7"
 url = "codeskulptor-"+writeBucket+".commondatastorage.googleapis.com"
@@ -93,7 +94,6 @@ createHash = (a) ->
   return d
 
 task 'concatupload', "concat files and upload them to codeskulptor, then opens chrome window", (options) ->
-
   console.log "Concatenating files"
 
   appFiles = []
@@ -101,6 +101,8 @@ task 'concatupload', "concat files and upload them to codeskulptor, then opens c
   filewalk.walkSync options.source, (dirPath, dirs, files) ->
     for f in files
       appFiles.push("#{dirPath}/#{f}")
+	
+  appFiles.sort()
 
   appContents = new Array
   remaining = appFiles.length
@@ -132,4 +134,4 @@ task 'concatupload', "concat files and upload them to codeskulptor, then opens c
     console.log("Filename:"+key)
 
     console.log("Opening browser")
-    exec "open http://www.codeskulptor.org/#"+key
+    open "http://www.codeskulptor.org/#"+key
