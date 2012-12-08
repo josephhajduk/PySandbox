@@ -3,7 +3,7 @@ fs = require 'fs'
 {exec} = require 'child_process'
 filewalk = require 'file'
 connect = require 'connect'
-open = require('open');
+open = require('open')
 
 writeBucket = "user7"
 url = "codeskulptor-"+writeBucket+".commondatastorage.googleapis.com"
@@ -113,7 +113,7 @@ task 'concatupload', "concat files and upload them to codeskulptor, then opens c
 
       #if file name isn't __init__.py remove all import lines
       console.log file
-      if file.indexOf("__imports") == -1
+      if file.indexOf("0_imports") == -1
         filteredContents = fileContents.replace(/import (.*)/g,"")
         filteredContents = filteredContents.replace(/from (.*)/g, "")
       else
